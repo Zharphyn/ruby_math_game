@@ -18,8 +18,7 @@ class Math_Question
   end
 
   def check_answer answer
-    puts "@answer = #{@answer} and is a #{@answer.class}"
-    puts "answer = #{answer} and is a #{answer.class}"
+
     @answer == answer ? true : false 
 
 

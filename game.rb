@@ -6,29 +6,30 @@ class Game
   attr_reader :question
   attr_accessor :player1
   attr_accessor :player2
+  attr_accessor :game_over
 
-  def initialize()
-    @player1 = Player.new("Player1",3, true)
-    @player2 = Player.new("Player2",3, false)
+  def initialize(numturns)
+    @player1 = Player.new("Player 1", numturns, true)
+    @player2 = Player.new("Player 2", numturns, false)
     @question = Math_Question.new
+    @game_over = false
 
   end
 
+  def whose_turn
+    @player1.my_turn == true ? 1 : 2
+  end
+
   def ask_question()
-    @player1.my_turn == true ? "Player 1: #{@question.get_question}" : "Player 2: #{@question.get_question}"
+    player = "Player #{whose_turn}"
+     "#{player}: #{@question.get_question}"
     
   end
 
   def check_answer answer
-    puts "-----------------------------------------------------"
-    puts "answer = #{answer} and is a #{answer.class}"
-    puts "-----------------------------------------------------"
-    result = @question.check_answer answer
-    if result == true 
-      pp "Yes, you are correct!"
-    else
-      pp "No, You SUCK!!" 
-      # remove life
-    end
+    @question.check_answer answer
+
   end
+
+
 end

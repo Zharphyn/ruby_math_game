@@ -12,7 +12,7 @@ class Player
 
   def lose_life
     @lives -= 1
-    @lives == 0 ? true : false 
+    @lives > 0 ? true : false 
   end 
 
 end
